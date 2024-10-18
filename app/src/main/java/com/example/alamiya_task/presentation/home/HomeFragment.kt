@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.example.alamiya_task.R
 import com.example.alamiya_task.common.util.Constants.Companion.COUNTDOWN_TIME_KEY
+import com.example.alamiya_task.common.util.LocationHelper
 import com.example.alamiya_task.common.util.Resource
 import com.example.alamiya_task.common.util.formatTimeTo12Hour
 import com.example.alamiya_task.data.model.PrayerTimeResponse
@@ -50,7 +51,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var longitude: Double = 0.0
     private lateinit var prayersTimes: PrayerTimeResponse
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,24 +68,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         getUserLocation()
         calendarHandler()
         initObservation()
-
         binding.QiblaBtn.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_qiblaFragment)
         }
-
-
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun initObservation() {
-
         with(viewModel) {
             getPrayerTimeState.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is Resource.Success -> {
                         response.data?.let {
-
                             val prayTime = it.data[currentDay - 1].timings
                             prayerTimeList = listOf(
                                 prayTime.Fajr.formatTimeTo12Hour(),
@@ -130,7 +124,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             viewModel.lat.observe(viewLifecycleOwner) { lat ->
                 viewModel.long.observe(viewLifecycleOwner) { long ->
-                    viewModel.getPrayerTimes(currentYear, currentMonth.value, lat, long, 1)
+                    viewModel.getPrayerTimes(currentYear,
+                        currentMonth.value,
+                        lat, long, 1)
                     latitude = lat
                     longitude = long
 
@@ -170,7 +166,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-
     @SuppressLint("SetTextI18n")
     fun calendarHandler() {
         binding.tvDate.text = "$currentMonth $currentDay $currentYear"
@@ -192,9 +187,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private var job: Job? = null
 
-
-    @SuppressLint("SetTextI18n")
-    fun startCountdown(totalSeconds: Long) {
+    private fun startCountdown(totalSeconds: Long) {
         job = CoroutineScope(Dispatchers.Main).launch {
             for (seconds in totalSeconds downTo 0) {
                 val formattedTime = formatTime(seconds)
@@ -221,7 +214,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             -1
         }
     }
-
 
     private fun nextPrayer(times: List<String>): Long {
         val currentTime = Calendar.getInstance().time
@@ -258,24 +250,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun getUserLocation() {
         locationHelper.fetchLocation(object : LocationHelper.OnLocationFetchedListener {
             override fun onLocationFetched(location: Location?, address: String?) {
-                viewModel.setLat(location!!.latitude)
-                viewModel.setLong(location.longitude)
+                location?.let { viewModel.setLat(it.latitude) }
+                location?.let { viewModel.setLong(it.longitude) }
                 binding.tvLocation.text = address
-
             }
-
-            @SuppressLint("SetTextI18n")
             override fun onError(error: String?) {
-                binding.tvLocation.text = "$error please restart the app"
+                binding.tvLocation.text = "$error need location access"
             }
         })
     }
 
-    @SuppressLint("SetTextI18n")
     private fun incrementLogic() {
         if (currentDay < currentMonth.maxLength()) {
             currentDay += 1
-            binding.tvDate.text = "$currentMonth  $currentDay $currentYear"
+            binding.tvDate.text = "$currentMonth $currentDay $currentYear"
             viewModel.setDay(currentDay)
         } else {
 
@@ -293,9 +281,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
     }
 
-
-
-    @SuppressLint("SetTextI18n")
     private fun decrementLogic() {
         if (currentDay > 1) {
             currentDay -= 1
@@ -316,6 +301,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         }
     }
-
 
 }

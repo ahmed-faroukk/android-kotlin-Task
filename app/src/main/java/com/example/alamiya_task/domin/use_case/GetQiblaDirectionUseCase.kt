@@ -13,7 +13,7 @@ class GetQiblaDirectionUseCase @Inject constructor(
      suspend operator fun invoke(
         latitude: Double,
         longitude: Double,
-    ): Response<qiblaResponse> {
+    ): qiblaResponse {
         return repository.getQiblaDirection(latitude, longitude)
     }
 }

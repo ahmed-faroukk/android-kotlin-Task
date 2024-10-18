@@ -14,13 +14,13 @@ interface ApiInterface {
         @Query("latitude") latitude: Double,
         @Query("longitude") longitude: Double,
         @Query("method") method: Int,
-    ): Response<PrayerTimeResponse>
+    ): PrayerTimeResponse
 
     @GET("qibla/{latitude}/{longitude}")
     suspend fun getQiblaDirection(
         @Path("latitude") latitude: Double,
         @Path("longitude") longitude: Double,
-    ): Response<qiblaResponse>
+    ): qiblaResponse
 
 
 }

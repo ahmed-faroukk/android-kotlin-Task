@@ -20,15 +20,17 @@ class HomeViewModel @Inject constructor(
     private val prayerUseCase: PrayerUseCases,
 ) : ViewModel() {
 
-
     //livedata objects
     private val _getPrayerTimeState = MutableLiveData<Resource<PrayerTimeResponse>>()
     val getPrayerTimeState: LiveData<Resource<PrayerTimeResponse>> = _getPrayerTimeState
 
+    //livedata objects
+    private val _prayerTimes = MutableLiveData<List<String>>()
+    val prayerTimes: LiveData<List<String>> = _prayerTimes
+
     //latitude
     private val _lat = MutableLiveData<Double>()
     val lat: LiveData<Double> = _lat
-
 
     //Longitude
     private val _long = MutableLiveData<Double>()
@@ -43,9 +45,7 @@ class HomeViewModel @Inject constructor(
     //livedata objects
     private val _year = MutableLiveData<Int>()
 
-    //livedata objects
-    private val _prayerTimes = MutableLiveData<List<String>>()
-    val prayerTimes: LiveData<List<String>> = _prayerTimes
+
 
     //livedata objects
     private val _index = MutableLiveData<Int>()
@@ -81,6 +81,7 @@ class HomeViewModel @Inject constructor(
     }
 
 
+    /// ::::::::::::::::::::::: get all prayer times based on location ::::::::::::::::::: ///
     fun getPrayerTimes(
         year: Int,
         month: Int,
@@ -89,24 +90,17 @@ class HomeViewModel @Inject constructor(
         method: Int,
     ) {
         viewModelScope.launch {
-
             try {
-
-                val response =
-                    prayerUseCase.getPrayersTimesUseCase(year, month, latitude, longitude, method)
-                _getPrayerTimeState.value = getPrayerTimeHandler(response)
+                val response = prayerUseCase.getPrayersTimesUseCase(year, month, latitude, longitude, method)
+              // _getPrayerTimeState.value = getPrayerTimeHandler(response)
 
             } catch (t: Throwable) {
-
                 _getPrayerTimeState.postValue(Resource.Error(t.message, null))
-
             }
-
-
         }
-
     }
 
+    /// ::::::::::::::::::::::: get all prayer times based on location ::::::::::::::::::: ///
     private fun getPrayerTimeHandler(response: Response<PrayerTimeResponse>): Resource<PrayerTimeResponse> {
         if (response.isSuccessful) {
             response.body()?.let {
@@ -117,7 +111,6 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    // cashing
     fun saveAllPrayersTimes(response: PrayerTimeResponse) =
         viewModelScope.launch {
             prayerUseCase.savePrayersTimesUseCase(response)

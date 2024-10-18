@@ -1,6 +1,7 @@
-package com.example.alamiya_task.presentation.home
+package com.example.alamiya_task.common.util
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -13,7 +14,7 @@ import com.google.android.gms.location.LocationServices
 import java.util.*
 
 @Suppress("DEPRECATION")
-class LocationHelper(private val context: AppCompatActivity) {
+class LocationHelper(private val context: Context) {
 
     private val fusedLocationClient: FusedLocationProviderClient =
         LocationServices.getFusedLocationProviderClient(context)
@@ -37,21 +38,15 @@ class LocationHelper(private val context: AppCompatActivity) {
                 }
                 this.location = location
                 val geocoder = Geocoder(context, Locale.getDefault())
-                val addresses: List<Address> = geocoder.getFromLocation(
+                val addresses: MutableList<Address>? = geocoder.getFromLocation(
                     location.latitude,
                     location.longitude,
                     1
-                )!!
-                val address: Address = addresses[0]
+                )
+                val address: Address = addresses?.get(0) ?: Address(Locale.US)
                 val addressText = address.getAddressLine(0)
                 onLocationFetchedListener.onLocationFetched(location, addressText)
             }
-        } else {
-            ActivityCompat.requestPermissions(
-                context,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                PERMISSION_REQUEST_CODE
-            )
         }
     }
 

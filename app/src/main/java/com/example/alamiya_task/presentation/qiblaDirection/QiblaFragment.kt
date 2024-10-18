@@ -24,7 +24,7 @@ import com.example.alamiya_task.R
 import com.example.alamiya_task.common.util.Resource
 import com.example.alamiya_task.common.util.compassHandler
 import com.example.alamiya_task.databinding.FragmentQiblaBinding
-import com.example.alamiya_task.presentation.home.LocationHelper
+import com.example.alamiya_task.common.util.LocationHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -15,12 +15,12 @@ interface repository {
         latitude: Double,
         longitude: Double,
         method: Int,
-    ): Response<PrayerTimeResponse>
+    ): PrayerTimeResponse
 
     suspend fun getQiblaDirection(
         latitude: Double,
         longitude: Double,
-    ): Response<qiblaResponse>
+    ): qiblaResponse
 
     suspend fun savePrayersTimes(response: PrayerTimeResponse): Long
 

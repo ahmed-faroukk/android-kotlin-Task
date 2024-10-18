@@ -28,7 +28,7 @@ class QiblaViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val response = prayerUseCase.getQiblaDirectionUseCase(lat, long)
-                _qiblaDirection.postValue(getDirectionHandler(response))
+               // _qiblaDirection.postValue(getDirectionHandler(response))
             } catch (t: Throwable) {
                 _qiblaDirection.postValue(Resource.Error(t.message, null))
             }

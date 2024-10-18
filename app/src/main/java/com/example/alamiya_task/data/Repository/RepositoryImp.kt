@@ -22,13 +22,12 @@ class RepositoryImp @Inject constructor(
         latitude: Double,
         longitude: Double,
         method: Int,
-    ): Response<PrayerTimeResponse> =
-        apiInterface.getPrayerTimes(year, month, latitude, longitude, method)
+    ): PrayerTimeResponse = apiInterface.getPrayerTimes(year, month, latitude, longitude, method)
 
     override suspend fun getQiblaDirection(
         latitude: Double,
         longitude: Double,
-    ): Response<qiblaResponse> = apiInterface.getQiblaDirection(latitude, longitude)
+    ): qiblaResponse = apiInterface.getQiblaDirection(latitude, longitude)
 
     override suspend fun savePrayersTimes(response: PrayerTimeResponse): Long =
         db.getPrayerDao().savePrayersTimes(response)

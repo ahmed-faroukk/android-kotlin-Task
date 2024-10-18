@@ -1,9 +1,13 @@
 package com.example.alamiya_task.common.util
 
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import com.example.alamiya_task.R
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 
@@ -28,4 +32,15 @@ fun ImageView.compassHandler(azimuth: Float ,qiblaDirection : Double ){
     } else {
         this.setImageResource(R.drawable.baseline_explore_24)
     }
+}
+
+fun String.formatAddress(): String {
+    // Use a regular expression to remove all numbers
+    return this.replace(Regex("\\d+"), "").trim()
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun LocalDate.formatDate(): String {
+    val formatter = DateTimeFormatter.ofPattern("dd MMM yy")
+    return this.format(formatter)
 }

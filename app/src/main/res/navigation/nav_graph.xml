@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/prayerTimesFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -28,12 +28,12 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.example.alamiya_task.presentation.splash.splashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        android:id="@+id/prayerTimesFragment"
+        android:name="com.example.alamiya_task.presentation.home.PrayerTimesFragment"
+        android:label="fragment_prayer_times"
+        tools:layout="@layout/fragment_prayer_times" >
         <action
-            android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_prayerTimesFragment_to_qiblaFragment"
+            app:destination="@id/qiblaFragment" />
     </fragment>
 </navigation>

@@ -18,7 +18,8 @@ class splashFragment : Fragment(R.layout.fragment_splash) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launch {
             delay(3500)
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+         //   findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+          // findNavController().navigate(R.id.action_splashFragment_to_prayerTimesFragment)
         }
     }
 }

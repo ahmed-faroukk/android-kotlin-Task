@@ -16,7 +16,7 @@ class GetPrayersTimesUseCase @Inject constructor(
         latitude: Double,
         longitude: Double,
         method: Int,
-    ): Response<PrayerTimeResponse> {
+    ): PrayerTimeResponse {
         return repository.getPrayerTimes(year, month, latitude, longitude, method)
     }
 
