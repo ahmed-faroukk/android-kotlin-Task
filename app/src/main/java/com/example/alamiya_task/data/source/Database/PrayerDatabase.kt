@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.alamiya_task.data.model.PrayerTimeResponse
+import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse
 
 @Database(
     entities = [PrayerTimeResponse::class],

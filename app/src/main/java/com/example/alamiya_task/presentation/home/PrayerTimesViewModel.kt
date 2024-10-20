@@ -1,22 +1,21 @@
 package com.example.alamiya_task.presentation.home
 
+import PermissionWidget
 import android.location.Location
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.alamiya_task.common.util.LocationHelper
-import com.example.alamiya_task.common.util.Resource
-import com.example.alamiya_task.data.model.PrayerTimeResponse
+import com.example.alamiya_task.core.helper_classes.LocationHelper
+import com.example.alamiya_task.core.helper_classes.PermissionManager
+import com.example.alamiya_task.core.state_handler.Resource
 import com.example.alamiya_task.databinding.FragmentPrayerTimesBinding
 import com.example.alamiya_task.domin.use_case.GetPrayerTimesUseCase
-import com.example.alamiya_task.domin.use_case.PrayerUseCases
-import com.example.alamiya_task.data.model.PrayerDate
-import com.example.alamiya_task.data.model.UserLocation
+import com.example.alamiya_task.domin.entity.prayer_time.UserLocation
+import com.example.alamiya_task.presentation.home.components.showSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,7 +25,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PrayerTimesViewModel  @Inject constructor(
-    private val prayerUseCase: PrayerUseCases,
     private val getPrayerTimesUseCase: GetPrayerTimesUseCase,
 ) : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -39,27 +37,6 @@ class PrayerTimesViewModel  @Inject constructor(
     val userLocation: LiveData<UserLocation> = _userLocation
     fun setUserLocation(latitude: Double, longitude: Double , address : String) {
         _userLocation.value = UserLocation(latitude, longitude ,address)
-    }
-
-
-
-    /// ::::::::::::::::::::::::::::: get user current location ::::::::::::::::::::::::::::///
-
-     fun getUserLocation(locationHelper: LocationHelper , binding: FragmentPrayerTimesBinding , widget : @Composable () -> Unit)  {
-        locationHelper.fetchLocation(object : LocationHelper.OnLocationFetchedListener {
-            @RequiresApi(Build.VERSION_CODES.O)
-            override fun onLocationFetched(location: Location?, address: String?) {
-                location?.let {
-                    setUserLocation(it.latitude , it.longitude , address.toString())
-                    getPrayerTimes(currentDate.year , currentDate.monthValue , it.latitude , it.longitude , 1)
-                }
-            }
-            override fun onError(error: String?) {
-                binding.myComposable.setContent {
-                    widget()
-                }
-            }
-        })
     }
 
 
@@ -81,22 +58,37 @@ class PrayerTimesViewModel  @Inject constructor(
         }
     }
 
-        fun saveAllPrayersTimes(response: PrayerTimeResponse) =
-            viewModelScope.launch {
-                prayerUseCase.savePrayersTimesUseCase(response)
+    /// ::::::::::::::::::::::::::::: get user current location ::::::::::::::::::::::::::::///
+
+    fun getUserLocation(locationHelper: LocationHelper, binding: FragmentPrayerTimesBinding, widget : @Composable () -> Unit)  {
+        locationHelper.fetchLocation(object : LocationHelper.OnLocationFetchedListener {
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onLocationFetched(location: Location?, address: String?) {
+                location?.let {
+                    setUserLocation(it.latitude , it.longitude , address.toString())
+                    getPrayerTimes(currentDate.year , currentDate.monthValue , it.latitude , it.longitude , 1)
+                }
             }
-
-
-        fun getAllPrayersTimes(): LiveData<PrayerTimeResponse> {
-            return prayerUseCase.getAllPrayersTimesUseCase()
-        }
-
-        fun deleteAll() {
-            viewModelScope.launch {
-                prayerUseCase.deleteTableUseCase()
+            override fun onError(error: String?) {
+                binding.myComposable.setContent {
+                    widget()
+                }
             }
-        }
+        })
     }
+
+    fun checkLocationPermission(viewModel: PrayerTimesViewModel, binding: FragmentPrayerTimesBinding, permissionManager: PermissionManager, locationHelper: LocationHelper) {
+        permissionManager.checkLocationPermission(
+            onPermissionGranted = {
+                viewModel.getUserLocation(locationHelper, binding) @Composable { PermissionWidget(permissionManager = permissionManager) }
+            },
+            onPermissionDenied = {
+                showSettings(binding , permissionManager)
+            }
+        )
+    }
+
+}
 
 
 

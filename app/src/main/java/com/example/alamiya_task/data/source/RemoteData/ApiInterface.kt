@@ -1,7 +1,8 @@
 package com.example.alamiya_task.data.source.RemoteData
 
-import com.example.alamiya_task.data.model.PrayerTimeResponse
-import com.example.alamiya_task.data.model.qibla.qiblaResponse
+import com.example.alamiya_task.core.state_handler.Resource
+import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse
+import com.example.alamiya_task.domin.entity.qibla.qiblaResponse
 import retrofit2.Response
 import retrofit2.http.*
 

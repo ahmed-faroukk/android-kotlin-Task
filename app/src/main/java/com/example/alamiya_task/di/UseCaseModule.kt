@@ -1,13 +1,8 @@
 package com.example.alamiya_task.di
 
-import com.example.alamiya_task.data.Repository.RepositoryImp
-import com.example.alamiya_task.domin.repository.repository
-import com.example.alamiya_task.domin.use_case.DeleteTableUseCase
-import com.example.alamiya_task.domin.use_case.GetAllPrayersTimesUseCase
-import com.example.alamiya_task.domin.use_case.GetPrayersTimesUseCase
-import com.example.alamiya_task.domin.use_case.GetQiblaDirectionUseCase
-import com.example.alamiya_task.domin.use_case.PrayerUseCases
-import com.example.alamiya_task.domin.use_case.SavePrayersTimesUseCase
+import com.example.alamiya_task.domin.repository.PrayerRepository
+import com.example.alamiya_task.domin.use_case.GetPrayerTimesUseCase
+import com.example.alamiya_task.domin.use_case.GetQiblaUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,14 +16,13 @@ object UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideUseCase(repository: repository): PrayerUseCases {
-        return PrayerUseCases(
-            DeleteTableUseCase(repository),
-            GetAllPrayersTimesUseCase(repository),
-            GetPrayersTimesUseCase(repository),
-            GetQiblaDirectionUseCase(repository),
-            SavePrayersTimesUseCase(repository),
-        )
+    fun provideGetPrayerTimesUseCase(repository: PrayerRepository): GetPrayerTimesUseCase {
+        return GetPrayerTimesUseCase(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideGetQibla(repository: PrayerRepository): GetQiblaUseCase {
+        return GetQiblaUseCase(repository)
     }
 
 }

@@ -1,6 +1,6 @@
 package com.example.alamiya_task.di
 
-import com.example.alamiya_task.common.util.Constants
+import com.example.alamiya_task.core.constants.Constants
 import com.example.alamiya_task.data.source.RemoteData.ApiInterface
 import dagger.Module
 import dagger.Provides
@@ -33,6 +33,7 @@ object DataSourceModule {
 
         return retrofit.create(ApiInterface::class.java)
     }
+
 
 
 }

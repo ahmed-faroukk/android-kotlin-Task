@@ -1,7 +1,7 @@
 package com.example.alamiya_task.data.source.Database
 
 import androidx.room.TypeConverter
-import com.example.alamiya_task.data.model.Data
+import com.example.alamiya_task.domin.entity.prayer_time.Data
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

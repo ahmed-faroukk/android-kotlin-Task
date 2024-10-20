@@ -1,5 +1,6 @@
 package com.example.alamiya_task.presentation.home.components
 
+import CustomAppText
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
@@ -15,9 +16,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -26,9 +25,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.alamiya_task.R
-import com.example.alamiya_task.common.util.formatDate
+import com.example.alamiya_task.core.extentions.formatDate
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -75,22 +73,22 @@ fun LocationSection(
         ) {
             Spacer(modifier = Modifier.height(5.dp))
 
-            Text(
+            CustomAppText(
                 text = currentDate.value.formatDate(), // Display current date
                 fontWeight = FontWeight.ExtraBold
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(
+            CustomAppText(
                 text = address ,
                 textAlign = TextAlign.Center,
-                fontSize = 13.sp,
+                fontSize = 14f,
+                maxLines = 3,
                 color = colorResource(id = R.color.primary_color)
             )
             Spacer(modifier = Modifier.height(5.dp))
 
         }
 
-        // Right Arrow Icon
         IconButton(
             onClick = {
                 if (currentDate.value.dayOfMonth < currentMonthDays-1) {

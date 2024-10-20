@@ -47,7 +47,7 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="fullSensor"
             tools:ignore="DiscouragedApi">

@@ -1,11 +1,10 @@
 package com.example.alamiya_task.data.source.Database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.alamiya_task.data.model.PrayerTimeResponse
+import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse
 
 @Dao
 interface PrayerDao {
@@ -14,7 +13,7 @@ interface PrayerDao {
     suspend fun savePrayersTimes(prayerTimeResponse: PrayerTimeResponse): Long
 
     @Query("SELECT * FROM prayers")
-    fun getAllPrayersTimes(): LiveData<PrayerTimeResponse>
+    fun getAllPrayersTimes(): PrayerTimeResponse
 
 
     @Query("delete FROM prayers")

@@ -1,5 +1,7 @@
 package com.example.alamiya_task.presentation.home
 
+import PermissionWidget
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.Composable
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.example.alamiya_task.common.util.LocationHelper
-import com.example.alamiya_task.common.util.PermissionManager
-import com.example.alamiya_task.common.util.formatAddress
+import androidx.navigation.fragment.findNavController
+import com.example.alamiya_task.R
+import com.example.alamiya_task.core.extentions.formatAddress
+import com.example.alamiya_task.core.helper_classes.LocationHelper
+import com.example.alamiya_task.core.helper_classes.PermissionManager
 import com.example.alamiya_task.databinding.FragmentPrayerTimesBinding
-import com.example.alamiya_task.presentation.home.components.PermissionWidget
 import com.example.alamiya_task.presentation.home.components.showError
 import com.example.alamiya_task.presentation.home.components.showLoading
 import com.example.alamiya_task.presentation.home.components.showPrayerTimesScreen
@@ -22,6 +25,7 @@ import com.example.alamiya_task.presentation.home.components.showSettings
 
 @RequiresApi(Build.VERSION_CODES.O)
 class PrayerTimesFragment : Fragment() {
+
     private lateinit var binding: FragmentPrayerTimesBinding
     private val viewModel: PrayerTimesViewModel by activityViewModels()
     private lateinit var permissionManager: PermissionManager
@@ -30,10 +34,10 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Re-check location permission when returning to the fragment
-        checkLocationPermission()
-    }
+        if(viewModel.state.value?.data == null)
+       viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
 
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,11 +48,12 @@ class PrayerTimesFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         locationHelper = LocationHelper(context = this.requireActivity() as AppCompatActivity)
         permissionManager = PermissionManager(requireActivity())
-         checkLocationPermission()
+        viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
         viewModel.state.observe(viewLifecycleOwner) { state ->
             initObservation()
         }
@@ -62,27 +67,28 @@ class PrayerTimesFragment : Fragment() {
         if (state?.isLoading == true) {
             showLoading(binding)
         }
+
         if (state?.error?.isNotEmpty() == true) {
             showError(retryAction = {
-            }, binding )
-        }
-        state?.data?.let { showPrayerTimesScreen(it, location.value?.address?.formatAddress() ?: "not found", binding) }
-    }
-
-
-    private fun checkLocationPermission() {
-        permissionManager.checkLocationPermission(
-            onPermissionGranted = {
-                viewModel.getUserLocation(locationHelper, binding) @Composable { PermissionWidget(permissionManager = permissionManager) }.also {
+                viewModel.getUserLocation(locationHelper, binding) @Composable {
+                    PermissionWidget(
+                        permissionManager = permissionManager
+                    )
                 }
-            },
-            onPermissionDenied = {
-                showSettings(binding , permissionManager)
+            }, binding, state.error)
+        }
+
+        state?.data?.let {
+            showPrayerTimesScreen(it, location.value?.address?.formatAddress() ?: "not found", binding
+            ) {
+                findNavController().navigate(R.id.action_prayerTimesFragment_to_qiblaFragment)
             }
-        )
+
+        }
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -91,7 +97,7 @@ class PrayerTimesFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         permissionManager.handlePermissionResult(requestCode, grantResults,
             onPermissionGranted = { initObservation() },
-            onPermissionDenied = {    showSettings(binding , permissionManager) }
+            onPermissionDenied = { showSettings(binding, permissionManager) }
         )
     }
 

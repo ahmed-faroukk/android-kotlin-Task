@@ -6,34 +6,34 @@
     app:startDestination="@id/prayerTimesFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.alamiya_task.presentation.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_qiblaFragment"
-            app:destination="@id/qiblaFragment"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
-            app:popEnterAnim="@anim/slide_in"/>
-
-    </fragment>
-    <fragment
         android:id="@+id/qiblaFragment"
         android:name="com.example.alamiya_task.presentation.qiblaDirection.QiblaFragment"
         android:label="fragment_qibla"
         tools:layout="@layout/fragment_qibla" >
         <action
-            android:id="@+id/action_qiblaFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_qiblaFragment_to_prayerTimesFragment"
+            app:destination="@id/prayerTimesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/prayerTimesFragment"
         android:name="com.example.alamiya_task.presentation.home.PrayerTimesFragment"
         android:label="fragment_prayer_times"
         tools:layout="@layout/fragment_prayer_times" >
+
         <action
             android:id="@+id/action_prayerTimesFragment_to_qiblaFragment"
             app:destination="@id/qiblaFragment" />
+
+        <action
+            android:id="@+id/action_prayerTimesFragment_to_qiblaDirectionFragment"
+            app:destination="@id/qiblaDirectionFragment"/>
+
     </fragment>
+
+    <fragment
+        android:id="@+id/qiblaDirectionFragment"
+        android:name="com.example.alamiya_task.presentation.qiblaDirection.QiblaDirectionFragment"
+        android:label="fragment_qibla_direction"
+        tools:layout="@layout/fragment_qibla_direction" />
 </navigation>
