@@ -15,20 +15,43 @@
 
 
 
-# ScreenShots:
+# App Screens :
 
-<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-  <img src="https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/15558588-32d7-402e-8e62-622ed3f534f4" alt="Screenshot 1" width="200">
-  <img src="https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/2090cfc4-4a65-43c7-a83e-a3d23e388d7d" alt="Screenshot 2" width="200">
-  <img src="https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/a9aa4008-ee61-46ce-a7d5-4ad1f301592a" alt="Screenshot 4" width="200">
-  <img src="https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/327898f9-c91e-47f3-8982-251b9cb95789" alt="Screenshot 4" width="200">
-<img src="https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/8eb9bff8-f516-44bd-bc5c-d5eccf78225f" alt="Screenshot 3" width="200">
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/225ee0ad-cd24-47e2-8ebe-4d184f2c8193" alt="Screenshot 1" width="180">
+  <img src="https://github.com/user-attachments/assets/d7b2492b-4388-4b67-9e12-09a501cfeb46" alt="Screenshot 3" width="180">
+  <img src="https://github.com/user-attachments/assets/55d4df61-7300-405e-83dd-7a356ccf7260" alt="Screenshot 4" width="180">
+  <img src="https://github.com/user-attachments/assets/3aa66bd1-e2b5-4d9e-bbc7-9d962455d5ab" alt="Screenshot 2" width="180">
+  <img src="https://github.com/user-attachments/assets/53945541-da72-4e2d-bb59-1d0154bdc48a" alt="Screenshot 4" width="180">
+
   
 </div>
 
+# not granted permission state :
+
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/765686ce-f6c7-41d6-85f0-c35e3f300861" alt="Screenshot 4" width="200">
+  
+</div>
+
+# network connection states :
+
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/50aafc30-c2ea-4178-96a6-8d42783a4ad9" alt="Screenshot 4" width="200">
+  <img src="https://github.com/user-attachments/assets/2b62f3d2-de28-41ed-9ed8-4801c767742c" alt="Screenshot 4" width="200">
+
+</div>
+
+#  network connection problem + first enter so no caching in local database   :
+
+<div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/0db04246-0ca5-42ba-a282-2e77cf397b40" alt="Screenshot 4" width="200">
+</div>
 
 
 <p dir="auto">
+
+
   
 # App-Arch
 ![Screenshot from 2023-06-20 17-41-23](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/094d34cc-5b32-493a-b4e1-4946f78ec95e)
