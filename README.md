@@ -24,7 +24,6 @@
   <img src="https://github.com/user-attachments/assets/3aa66bd1-e2b5-4d9e-bbc7-9d962455d5ab" alt="Screenshot 2" width="180">
   <img src="https://github.com/user-attachments/assets/53945541-da72-4e2d-bb59-1d0154bdc48a" alt="Screenshot 4" width="180">
 
-  
 </div>
 
 # not granted permission state :
@@ -59,15 +58,18 @@
 # In-App architecture
 ![arch](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/a4a02bb5-58ca-4ac6-a9c6-153182644af5)
 
-# UI + Unit  testing :
-![Screenshot from 2023-06-20 17-48-24](https://github.com/user-attachments/assets/b1366bea-8386-4244-a823-a546aaa5392f)
-
-# database serves as the single source of truth, and other parts of the app access it via the repository.
+# Database serves as the single source of truth, and other parts of the app access it via the repository.
 
 ![Capture](https://github.com/user-attachments/assets/55715934-e1c9-4c19-9d45-b121a8fe3af0)
 
+
+# UI + Unit  testing :
+![Screenshot from 2023-06-20 17-48-24](https://github.com/user-attachments/assets/b1366bea-8386-4244-a823-a546aaa5392f)
+
+
+# Note* 
 <ul>
-  <li>The UI is composed of XML and Compose.</li>
+  <li>The UI is composed of XML and Compose </li>
   <li>Fade animation in the home screen.</li>
   <li>Single source of truth, applying separation of concerns, OOP principles, and clean code practices.</li>
 </ul>
@@ -81,6 +83,7 @@
   <li>Room DB</li>
   <li>Open street maps</li>
   <li>Unit Testing</li>
+  <li>UI Testing</li>
   <li>Retrofit</li>
   <li>OkHttp</li>
   <li>Sealed Classes</li>
