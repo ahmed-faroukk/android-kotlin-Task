@@ -31,6 +31,7 @@ class PrayerRepositoryImp @Inject constructor(
                 savePrayersTimes(response)
             }
         }
+         /** GET FROM LOCAL DB **/
         return getAllPrayersTimes()
     }
 

@@ -131,8 +131,7 @@ dependencies {
     androidTestImplementation "androidx.work:work-testing:2.8.1"
     debugImplementation "androidx.compose.ui:ui-tooling"
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4"
-    debugImplementation "androidx.compose.ui:ui-test-manifest"
+
 
     // If using coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
