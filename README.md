@@ -54,26 +54,22 @@
 
   
 # App-Arch
-![Screenshot from 2023-06-20 17-41-23](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/094d34cc-5b32-493a-b4e1-4946f78ec95e)
+![Screenshot from 2023-06-20 17-41-23](https://github.com/user-attachments/assets/51628a9c-5f14-4768-992e-e15fe241d6e5)
 
 # In-App architecture
 ![arch](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/a4a02bb5-58ca-4ac6-a9c6-153182644af5)
 
-# Unit testing for:
-![Screenshot from 2023-06-20 17-48-24](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/cd582dec-d31f-41e1-b545-1c329e69940f)
-<li>Local Database</li>
-<li> Repository </li>
+# UI + Unit  testing :
+![Screenshot from 2023-06-20 17-48-24](https://github.com/user-attachments/assets/b1366bea-8386-4244-a823-a546aaa5392f)
 
-# UI testing for:
-![Screenshot from 2023-06-20 17-48-24](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/cd582dec-d31f-41e1-b545-1c329e69940f)
-<li>Local Database</li>
-<li> Repository </li>
+# database serves as the single source of truth, and other parts of the app access it via the repository.
 
+![Capture](https://github.com/user-attachments/assets/55715934-e1c9-4c19-9d45-b121a8fe3af0)
 
 # Features
-<li> Simple UI </li>
-<li>Simple Animations</li>
-<li>cashing</li>
+<li> UI is compote of XML and Compose  </li>
+<li>fade animation in home screen</li>
+<li>single source of truth</li>
 
 # Tools & APIs
 <ul>
@@ -89,6 +85,8 @@
   <li>Sealed Classes</li>
   <li>Kotlin Coroutines</li>
   <li>Live Data</li>
+  <li>flow</li>
+  <li>compose</li>
   <li>Navigation component</li>
   <li>View binding</li>
   <li>leakCanary</li>
