@@ -33,10 +33,10 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.prayerTimeState.value?.data == null)
        viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
-
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -97,9 +97,12 @@ class PrayerTimesFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         permissionManager.handlePermissionResult(requestCode, grantResults,
             onPermissionGranted = { initObservation() },
-            onPermissionDenied = { showSettings(binding, permissionManager) }
+            onPermissionDenied = {
+                viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
+                showSettings(binding, permissionManager) }
         )
     }
+
 
 
 }

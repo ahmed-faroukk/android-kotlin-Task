@@ -44,6 +44,28 @@ fun PermissionWidget(permissionManager: PermissionManager) {
                     .padding(bottom = 16.dp)
                     .size(64.dp)
             )
+
+            if(!permissionManager.isSystemLocationEnabled()){
+                CustomAppText(
+                    text = "The app needs location permission to get accurate prayer times based on your location.",
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(24.dp)
+                )
+                Button(
+                    onClick = { permissionManager.openSystemLocationSettings() },
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White,
+                        contentColor = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 8.dp)
+                ) {
+                    Text(
+                        text = "Open Settings for system permission",
+                    )
+                }
+            }
             CustomAppText(
                 text = "The app needs location permission to get accurate prayer times based on your location.",
                 color = Color.White,

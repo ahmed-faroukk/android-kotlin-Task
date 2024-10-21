@@ -92,6 +92,7 @@ class PrayerTimesViewModel  @Inject constructor(
             },
             onPermissionDenied = {
                 showSettings(binding , permissionManager)
+
             }
         )
     }

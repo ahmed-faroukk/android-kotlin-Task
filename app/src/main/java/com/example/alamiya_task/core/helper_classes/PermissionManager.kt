@@ -4,7 +4,9 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.net.Uri
+import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
@@ -53,5 +55,17 @@ class PermissionManager(private val activity: Activity) {
             data = Uri.fromParts("package", activity.packageName, null)
         }
         activity.startActivity(intent)
+    }
+
+    fun openSystemLocationSettings() {
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        activity.startActivity(intent)
+    }
+
+
+    fun isSystemLocationEnabled(): Boolean {
+        val locationManager = activity.getSystemService(Activity.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
     }
 }
