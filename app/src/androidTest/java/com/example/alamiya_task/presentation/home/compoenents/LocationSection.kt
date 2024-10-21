@@ -1,4 +1,3 @@
-package com.example.alamiya_task.presentation.home.components
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -6,6 +5,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.example.alamiya_task.core.extentions.formatDate
+import com.example.alamiya_task.presentation.home.components.LocationSection
 import org.junit.Rule
 import org.junit.Test
 import java.time.LocalDate
