@@ -1,17 +1,11 @@
 package com.example.alamiya_task.presentation.home.components
 
-import AzanImage
 import CustomAppButton
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import com.example.alamiya_task.R
 import com.example.alamiya_task.core.helper_functions.findNextPrayer
 import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse
-import kotlinx.coroutines.delay
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -106,6 +99,9 @@ private fun PrayerHeader(nextPrayerName: String, nextPrayerTime: LocalTime) {
 @Composable
 fun ShowQiblaButton(onButtonClick: () -> Unit) {
     CustomAppButton(
+        backGroundColor = Color.White,
+        colorText = Color.Black,
+        modifier = Modifier.padding(5.dp),
         onTap = {
             onButtonClick()
         },

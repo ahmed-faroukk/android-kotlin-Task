@@ -1,5 +1,4 @@
 package com.example.alamiya_task.domin.use_case
-import android.annotation.SuppressLint
 import android.util.Log
 import com.example.alamiya_task.core.state_handler.Resource
 import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse

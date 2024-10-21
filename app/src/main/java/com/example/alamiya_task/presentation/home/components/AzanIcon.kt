@@ -1,3 +1,6 @@
+package com.example.alamiya_task.presentation.home.components
+
+import CustomAppImage
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

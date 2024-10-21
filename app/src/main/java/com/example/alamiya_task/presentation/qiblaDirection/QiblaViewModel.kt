@@ -17,24 +17,25 @@ class QiblaViewModel @Inject constructor(
 private val getQiblaUseCase: GetQiblaUseCase
 ) : ViewModel() {
 
-    // :::::::::::::::::::::::::::: get direction state :::::::::::::::::::::::::::: //
+    /** ::::::::::::::::::::::::::::: live data objects ::::::::::::::::::::::::::::**/
 
+    private val _qiblaState = MutableLiveData<QiblaUiState>()
+    val qiblaState: LiveData<QiblaUiState> = _qiblaState
 
-    private val _state = MutableLiveData<QiblaUiState>()
-    val state: LiveData<QiblaUiState> = _state
+    /** ::::::::::::::::::::::::::::: get direction state ::::::::::::::::::::::::::::**/
 
     fun getQibla( latitude: Double, longitude: Double) {
         viewModelScope.launch {
             getQiblaUseCase( latitude, longitude).onEach { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        _state.value = QiblaUiState(data = resource.data)
+                        _qiblaState.value = QiblaUiState(data = resource.data)
                     }
                     is Resource.Loading -> {
-                        _state.value = QiblaUiState(isLoading = true)
+                        _qiblaState.value = QiblaUiState(isLoading = true)
                     }
                     is Resource.Error -> {
-                        _state.value = QiblaUiState(error = resource.message ?: "Unknown error")
+                        _qiblaState.value = QiblaUiState(error = resource.message ?: "Unknown error")
                     }
                 }
             }.launchIn(this)

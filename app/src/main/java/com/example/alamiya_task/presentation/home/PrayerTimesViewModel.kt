@@ -1,6 +1,6 @@
 package com.example.alamiya_task.presentation.home
 
-import PermissionWidget
+import com.example.alamiya_task.presentation.home.components.PermissionWidget
 import android.location.Location
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -30,35 +30,41 @@ class PrayerTimesViewModel  @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     private val currentDate = LocalDate.now()
 
-    private val _state = MutableLiveData<PrayerTimeUiState>()
-    val state: LiveData<PrayerTimeUiState> = _state
+    /** :::::::::::::::::::::::::::::live data objects ::::::::::::::::::::::::::::**/
+
+    private val _prayerTimeState = MutableLiveData<PrayerTimeUiState>()
+    val prayerTimeState: LiveData<PrayerTimeUiState> = _prayerTimeState
+
 
     private val _userLocation = MutableLiveData<UserLocation>()
     val userLocation: LiveData<UserLocation> = _userLocation
+
+
     fun setUserLocation(latitude: Double, longitude: Double , address : String) {
         _userLocation.value = UserLocation(latitude, longitude ,address)
     }
 
+
+    /** ::::::::::::::::::::::::::::: get prayer time ::::::::::::::::::::::::::::**/
 
     fun getPrayerTimes(year: Int, month: Int, latitude: Double, longitude: Double, method: Int) {
         viewModelScope.launch {
             getPrayerTimesUseCase(year, month, latitude, longitude, method).onEach { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        _state.value = PrayerTimeUiState(data = resource.data)
+                        _prayerTimeState.value = PrayerTimeUiState(data = resource.data)
                     }
                     is Resource.Loading -> {
-                        _state.value = PrayerTimeUiState(isLoading = true)
+                        _prayerTimeState.value = PrayerTimeUiState(isLoading = true)
                     }
                     is Resource.Error -> {
-                        _state.value = PrayerTimeUiState(error = resource.message ?: "Unknown error")
+                        _prayerTimeState.value = PrayerTimeUiState(error = resource.message ?: "Unknown error")
                     }
                 }
             }.launchIn(this)
         }
     }
-
-    /// ::::::::::::::::::::::::::::: get user current location ::::::::::::::::::::::::::::///
+    /** ::::::::::::::::::::::::::::: get user current location ::::::::::::::::::::::::::::**/
 
     fun getUserLocation(locationHelper: LocationHelper, binding: FragmentPrayerTimesBinding, widget : @Composable () -> Unit)  {
         locationHelper.fetchLocation(object : LocationHelper.OnLocationFetchedListener {
@@ -76,6 +82,8 @@ class PrayerTimesViewModel  @Inject constructor(
             }
         })
     }
+
+    /**::::::::::::::::::::::::::::: check location permission ::::::::::::::::::::::::::::*///
 
     fun checkLocationPermission(viewModel: PrayerTimesViewModel, binding: FragmentPrayerTimesBinding, permissionManager: PermissionManager, locationHelper: LocationHelper) {
         permissionManager.checkLocationPermission(

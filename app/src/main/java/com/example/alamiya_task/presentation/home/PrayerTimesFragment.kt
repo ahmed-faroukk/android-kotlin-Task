@@ -1,7 +1,6 @@
 package com.example.alamiya_task.presentation.home
 
-import PermissionWidget
-import android.content.Context
+import com.example.alamiya_task.presentation.home.components.PermissionWidget
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -34,7 +33,7 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.state.value?.data == null)
+        if(viewModel.prayerTimeState.value?.data == null)
        viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
 
     }
@@ -54,14 +53,14 @@ class PrayerTimesFragment : Fragment() {
         locationHelper = LocationHelper(context = this.requireActivity() as AppCompatActivity)
         permissionManager = PermissionManager(requireActivity())
         viewModel.checkLocationPermission(viewModel, binding, permissionManager, locationHelper)
-        viewModel.state.observe(viewLifecycleOwner) { state ->
+        viewModel.prayerTimeState.observe(viewLifecycleOwner) {
             initObservation()
         }
     }
 
 
     private fun initObservation() {
-        val state = viewModel.state.value
+        val state = viewModel.prayerTimeState.value
         val location = viewModel.userLocation
 
         if (state?.isLoading == true) {
@@ -88,6 +87,7 @@ class PrayerTimesFragment : Fragment() {
     }
 
 
+    @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,

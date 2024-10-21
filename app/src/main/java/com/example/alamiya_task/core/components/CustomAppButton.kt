@@ -27,6 +27,7 @@ fun CustomAppButton(
     paddingVertical: Float = 14f,
     width: Float = 0f,
     height: Float = 60f,
+    modifier: Modifier = Modifier,
     fontWeight: FontWeight = FontWeight.ExtraBold,
     colorText: Color = colorResource(id = R.color.primary_color),
     borderColor: Color =Color.White,
@@ -46,7 +47,7 @@ fun CustomAppButton(
     }
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .let { if (width > 0) it.width(width.dp) else it.fillMaxWidth() }
             .height(height.dp)
             .shadow(shadow.dp)

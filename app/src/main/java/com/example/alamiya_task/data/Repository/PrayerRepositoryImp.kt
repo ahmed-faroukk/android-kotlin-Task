@@ -1,7 +1,6 @@
 package com.example.alamiya_task.data.Repository
 
 import com.example.alamiya_task.core.connectivity_observer.NetworkState
-import com.example.alamiya_task.core.state_handler.Resource
 import com.example.alamiya_task.data.source.Database.PrayerDatabase
 import com.example.alamiya_task.data.source.RemoteData.ApiInterface
 import com.example.alamiya_task.domin.entity.prayer_time.PrayerTimeResponse
@@ -10,7 +9,6 @@ import com.example.alamiya_task.domin.repository.PrayerRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 import javax.inject.Inject
 
 class PrayerRepositoryImp @Inject constructor(
@@ -45,7 +43,7 @@ class PrayerRepositoryImp @Inject constructor(
     ): PrayerTimeResponse = apiInterface.getPrayerTimes(year, month, latitude, longitude, method)
 
 
-    override suspend fun getQibla(latitude: Double, longitude: Double): qiblaResponse? =
+    override suspend fun getQibla(latitude: Double, longitude: Double): qiblaResponse =
         apiInterface.getQiblaDirection(latitude, longitude)
 
     override suspend fun savePrayersTimes(response: PrayerTimeResponse): Long =

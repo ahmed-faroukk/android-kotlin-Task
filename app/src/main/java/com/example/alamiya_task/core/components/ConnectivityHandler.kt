@@ -1,4 +1,5 @@
-
+package com.example.alamiya_task.core.components
+import CustomAppDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import com.example.alamiya_task.R

@@ -1,7 +1,5 @@
 package com.example.alamiya_task.presentation.home.components
 
-import PermissionWidget
-import ShimmerList
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.alamiya_task.core.helper_classes.PermissionManager

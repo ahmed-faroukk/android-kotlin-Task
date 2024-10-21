@@ -27,7 +27,7 @@ fun PrayerItem(prayerName: String, prayerTime: String, nextPrayerName: String) {
             .fillMaxWidth()
             .padding(2.dp)
             .background(
-                color = if (isNextPrayer)  Color(0xFF4CAF50) else colorResource(id = R.color.secondary_color),
+                color = if (isNextPrayer)  Color.Gray else colorResource(id = R.color.secondary_color),
                 shape = RoundedCornerShape(12.dp) // Rounded corners
             )
             .height(50.dp)

@@ -1,4 +1,5 @@
-
+package com.example.alamiya_task.presentation.home.components
+import CustomAppText
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

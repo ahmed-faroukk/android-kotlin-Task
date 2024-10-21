@@ -27,6 +27,7 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Polyline
 
+@Suppress("DEPRECATION")
 @SuppressLint("SourceLockedOrientationActivity")
 @AndroidEntryPoint
 class QiblaFragment : Fragment(R.layout.fragment_qibla), SensorEventListener {
@@ -126,7 +127,7 @@ class QiblaFragment : Fragment(R.layout.fragment_qibla), SensorEventListener {
 
 
     private fun initObservation() {
-        viewModel.state.observe(viewLifecycleOwner) { response ->
+        viewModel.qiblaState.observe(viewLifecycleOwner) { response ->
             if (response.error.isNotEmpty()) {
                 Toast.makeText(requireContext(), response.error, Toast.LENGTH_SHORT).show()
             }

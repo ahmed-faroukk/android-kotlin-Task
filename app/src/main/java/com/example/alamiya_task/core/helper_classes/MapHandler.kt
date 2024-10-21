@@ -18,6 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 class MapHelper {
 
+    @Suppress("DEPRECATION")
     @SuppressLint("UseCompatLoadingForDrawables")
     fun createMarkerOnTheMap(resourceId: Int, lat: Double, long: Double , map : MapView , resources : android.content.res.Resources) {
         val m = Marker(map)
@@ -44,7 +45,8 @@ class MapHelper {
         }
     }
 
-    fun drawPolyLine(startPoint: GeoPoint, endPoint: GeoPoint , line: Polyline , map: MapView) {
+    @Suppress("DEPRECATION")
+    fun drawPolyLine(startPoint: GeoPoint, endPoint: GeoPoint, line: Polyline, map: MapView) {
         val geoPoints: MutableList<GeoPoint> = ArrayList()
         geoPoints.add(startPoint)
         geoPoints.add(endPoint)
@@ -81,7 +83,13 @@ class MapHelper {
                     drawPolyLine(startPoint, endPoint , line, map )
 
                     // Place markers
-                    createMarkerOnTheMap(R.drawable.baseline_location_on_24, location.latitude, location.longitude , map, resources,)
+                    createMarkerOnTheMap(
+                        R.drawable.baseline_location_on_24,
+                        location.latitude,
+                        location.longitude,
+                        map,
+                        resources,
+                    )
                     createMarkerOnTheMap(R.drawable.baseline_mosque_24, 21.4225, 39.8262 , map, resources)
                 }
             }
