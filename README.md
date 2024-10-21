@@ -41,6 +41,12 @@
 <li>Local Database</li>
 <li> Repository </li>
 
+# UI testing for:
+![Screenshot from 2023-06-20 17-48-24](https://github.com/ahmed-faroukk/AlalmiyaAlhura-Task/assets/72602749/cd582dec-d31f-41e1-b545-1c329e69940f)
+<li>Local Database</li>
+<li> Repository </li>
+
+
 # Features
 <li> Simple UI </li>
 <li>Simple Animations</li>
