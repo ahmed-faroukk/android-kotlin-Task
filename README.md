@@ -67,7 +67,7 @@
 ![Capture](https://github.com/user-attachments/assets/55715934-e1c9-4c19-9d45-b121a8fe3af0)
 
 # Features
-<li> UI is compote of XML and Compose  </li>
+<li> The UI is composed of XML and Compose.  </li>
 <li>fade animation in home screen</li>
 <li>single source of truth</li>
 
