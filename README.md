@@ -30,7 +30,8 @@
 
 <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;">
   <img src="https://github.com/user-attachments/assets/765686ce-f6c7-41d6-85f0-c35e3f300861" alt="Screenshot 4" width="200">
-  
+   <img src="https://github.com/user-attachments/assets/39885a64-9730-485b-9c45-e746726a01f6" alt="Screenshot 4" width="200">
+
 </div>
 
 # network connection states :
