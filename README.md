@@ -66,10 +66,11 @@
 
 ![Capture](https://github.com/user-attachments/assets/55715934-e1c9-4c19-9d45-b121a8fe3af0)
 
-# Features
-<li> The UI is composed of XML and Compose.  </li>
-<li>fade animation in home screen</li>
-<li>single source of truth</li>
+<ul>
+  <li>The UI is composed of XML and Compose.</li>
+  <li>Fade animation in the home screen.</li>
+  <li>Single source of truth, applying separation of concerns, OOP principles, and clean code practices.</li>
+</ul>
 
 # Tools & APIs
 <ul>
